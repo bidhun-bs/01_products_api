@@ -1,32 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecommstoreappdeployment
+  name: productsapideployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ecommstore
+      app: products
   template:
     metadata:
       labels:
-        app: ecommstore
+        app: products
     spec:
       containers:
-      - name: ecommstorecontainer
-        image: bidhunbs0707/ecomm_store:0   # placeholder
+      - name: productscontainer
+        image: bidhunbs0707/products_api:0   # placeholder
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ecommstoresvc
+  name: productssvc
 spec:
   type: LoadBalancer
   selector:
-    app: ecommstore
+    app: products
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 8080
